@@ -1,21 +1,25 @@
 <script setup lang="ts">
 import { markRaw, ref, watchEffect } from 'vue';
 import { APP_LIST } from '../constant';
-import App from './App/App.vue';
+import Prettier from './Prettier/App.vue';
 import Demo from './Demo/App.vue'
+import TalkIsCheap from './TalkIsCheap/App.vue'
 
 
-const currentApp = ref(markRaw(App))
+const currentApp = ref(markRaw(Prettier))
 
-const appName = ref('App')
+const appName = ref('TalkIsCheap')
 
 watchEffect(() => {
   if (appName.value === APP_LIST[0].value) {
-    currentApp.value = markRaw(App)
+    currentApp.value = markRaw(Prettier)
   }
 
   if (appName.value === APP_LIST[1].value) {
     currentApp.value = markRaw(Demo)
+  }
+  if (appName.value === APP_LIST[2].value) {
+    currentApp.value = markRaw(TalkIsCheap)
   }
 })
 

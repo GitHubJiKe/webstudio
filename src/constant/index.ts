@@ -1,4 +1,5 @@
 export const APP_LIST = [
-  { name: "App", value: "App" },
+  { name: "Prettier", value: "Prettier" },
   { name: "Demo", value: "Demo" },
+  { name: "TalkIsCheap", value: "TalkIsCheap" },
 ];

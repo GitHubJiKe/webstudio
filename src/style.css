@@ -29,4 +29,6 @@ body {
 
 pre {
   border-radius: 12px;
+  height: 100%;
+  padding: 12px;
 }

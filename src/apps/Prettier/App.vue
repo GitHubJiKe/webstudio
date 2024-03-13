@@ -7,7 +7,7 @@ import Editor from './Components/Editor.vue';
 
 <template>
   <div class="flex justify-between p-4 h-full">
-    <nav class="p-0 m-0 flex-4 flex flex-col">
+    <nav class="p-0 m-0 flex-4 flex flex-col p-r-4">
       <Conf class="flex-4" />
       <Editor class="flex-8" />
     </nav>
