@@ -6,7 +6,7 @@ import {
   getDocs,
   Firestore,
 } from "firebase/firestore";
-
+import { getStorage, ref, uploadBytes, listAll } from "firebase/storage";
 interface AddDocOpt {
   entity: string;
   entityObj: Record<string, unknown>;
@@ -45,4 +45,47 @@ async function getDocument<T>(
   return data;
 }
 
-export { setDocument, addDocument, getDocument };
+async function uploadFileByBytes(file: File, filename: string) {
+  const storage = getStorage();
+  const storageRef = ref(storage, `images/${filename}`);
+  try {
+    const snapshot = await uploadBytes(storageRef, file);
+    return snapshot;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function listAllImages() {
+  const storage = getStorage();
+
+  // Create a reference under which you want to list
+  const listRef = ref(storage, "images");
+
+  // Find all the prefixes and items.
+  listAll(listRef)
+    .then((res) => {
+      console.log("res:::", res);
+      res.prefixes.forEach((folderRef) => {
+        console.log("folderRef:::", folderRef);
+        // All the prefixes under listRef.
+        // You may call listAll() recursively on them.
+      });
+      res.items.forEach((itemRef) => {
+        console.log("itemRef:::", itemRef);
+        // All the items under listRef.
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+      // Uh-oh, an error occurred!
+    });
+}
+
+export {
+  setDocument,
+  addDocument,
+  getDocument,
+  uploadFileByBytes,
+  listAllImages,
+};

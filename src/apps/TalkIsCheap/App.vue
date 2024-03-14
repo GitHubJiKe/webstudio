@@ -9,6 +9,8 @@ import {
     NButton,
     NList,
     NListItem,
+    NUpload,
+    UploadCustomRequestOptions
     // useLoadingBar,
     // NLoadingBarProvider
 } from 'naive-ui'
@@ -21,7 +23,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import firebaseConfig from '../../../firebase.config.json';
-import { addDocument, getDocument } from '../../utils/firebase';
+import { addDocument, getDocument, uploadFileByBytes, listAllImages } from '../../utils/firebase';
 import { nextTick, onMounted, ref, watchEffect } from 'vue';
 import { codeToHtml } from 'shiki'
 
@@ -52,6 +54,7 @@ interface CodeEntity {
 const codeList = ref<CodeEntity[]>([])
 
 onMounted(() => {
+    listAllImages()
     onTestFireBaseGet()
 })
 
@@ -90,13 +93,20 @@ const refreshCodeView = () => {
         })
     })
 }
+
+const customRequest = async ({ file }: UploadCustomRequestOptions) => {
+    console.log(file);
+    const res = await uploadFileByBytes(file.file!, file.name)
+    console.log(res);
+}
 </script>
 
 <template>
     <div class="h-full flex-1">
         <n-config-provider :theme="darkTheme" :locale="zhCN" :date-locale="dateZhCN">
-
-
+            <n-upload :custom-request="customRequest">
+                <n-button>上传文件</n-button>
+            </n-upload>
             <n-space vertical size="large">
                 <n-layout>
                     <n-layout-header>
