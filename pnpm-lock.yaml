@@ -26,6 +26,9 @@ dependencies:
   firebase:
     specifier: ^10.8.1
     version: 10.8.1
+  highlight.js:
+    specifier: ^11.9.0
+    version: 11.9.0
   monaco-editor:
     specifier: ^0.47.0
     version: 0.47.0
@@ -38,6 +41,9 @@ dependencies:
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.4.2)(vue@3.4.21)
+  simple-code-editor:
+    specifier: ^2.0.9
+    version: 2.0.9
   vue:
     specifier: ^3.4.19
     version: 3.4.21(typescript@5.4.2)
@@ -2839,6 +2845,12 @@ packages:
   /signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
+
+  /simple-code-editor@2.0.9:
+    resolution: {integrity: sha512-bDekCSgcaFn79kiB6N+S07/m9fLLfgHchVsKhMLyKsqZNaRC5GWxn2fpbMZPKmORDyWzUML3hy2mrN3XWyGSfA==}
+    dependencies:
+      highlight.js: 11.9.0
+    dev: false
 
   /sirv@2.0.4:
     resolution: {integrity: sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==}

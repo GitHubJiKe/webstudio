@@ -5,11 +5,20 @@ import { Diagnostic, lintKeymap } from '@codemirror/lint';
 import { onMounted } from 'vue';
 import * as sql from '@codemirror/lang-sql';
 import { oneDark } from '@codemirror/theme-one-dark';
-
+import hljs from 'highlight.js';
+import SQL from 'highlight.js/lib/languages/sql';
+// @ts-ignore
+import CodeEditor from "simple-code-editor";
+// Load any languages you need
+hljs.registerLanguage('sql', SQL);
 import {
   keymap,
 } from '@codemirror/view'
+import { ref } from 'vue';
+import javascript from 'highlight.js/lib/languages/javascript';
 
+// Then register the languages you need
+hljs.registerLanguage('javascript', javascript);
 async function sqlLinter(view: EditorView) {
   let diagnostics: Diagnostic[] = []
   // @ts-ignore
@@ -62,9 +71,17 @@ onMounted(() => {
     parent: document.body.querySelector('#sql')!
   });
 
-  console.log(view);
 })
 
+
+
+const highLight = (code: string) => {
+  return hljs.highlight(
+    code,
+    { language: 'sql' }
+  ).value
+}
+const codeVal = ref(`select * from User where name='小明'`)
 </script>
 
 <template>
